@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private static FirebaseDatabase mFirebaseDatabase;
+
     static {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseDatabase.setPersistenceEnabled(true);
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         etContent = (EditText) findViewById(R.id.et_content);
-
 
         FloatingActionButton fabSave = (FloatingActionButton) findViewById(R.id.save_memo);
         fabSave.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View v) {
                         mFirebaseAuth.signOut();
                         finish();
-                        startActivity(new Intent(MainActivity.this,AuthActivity.class));
+                        startActivity(new Intent(MainActivity.this, AuthActivity.class));
                     }
                 }).show();
 
@@ -179,8 +179,7 @@ public class MainActivity extends AppCompatActivity
 
     private void saveMemo() {
         String text = etContent.getText().toString();
-        if (text.isEmpty())
-            return;
+        if (text.isEmpty()) return;
         Memo memo = new Memo();
         memo.setTxt(etContent.getText().toString());
         memo.setCreateDate(new Date());
@@ -194,7 +193,6 @@ public class MainActivity extends AppCompatActivity
                         initMemo();
                     }
                 });
-
     }
 
     private void updateMemo() {
